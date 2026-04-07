@@ -12,82 +12,117 @@ export function EcosystemSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#f8f8f8] py-24 lg:py-32">
-      <div className="mx-auto max-w-[1700px] px-6 md:px-12">
-        {/* Header Section */}
-        <div className="mb-16 max-w-4xl lg:mb-24">
-          <div className="mb-6 flex items-center gap-4">
-            <span className="h-[1px] w-12 bg-[#1e3a5f]/30"></span>
-            <p className="text-[12px] font-bold tracking-[0.3em] text-[#1e3a5f]/60 uppercase">
-              Our Vision
-            </p>
-          </div>
-          <h2 className="font-[family-name:var(--font-display)] text-4xl font-semibold leading-[1.1] tracking-tight text-[#0d1117] sm:text-5xl lg:text-6xl">
-            A lifestyle ecosystem for{" "}
-            <span className="relative inline-block italic">
-              authentic
-              <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 100 8" preserveAspectRatio="none">
-                <path d="M0,5 Q50,0 100,5" stroke="#c45c26" strokeWidth="2" fill="none" opacity="0.4" />
-              </svg>
-            </span>{" "}
-            island living
+    <section className="relative overflow-hidden bg-[#f8f8f8] py-24 lg:py-40">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+        {/* Editorial Vision Header */}
+        <div className="mb-32 flex flex-col items-center text-center lg:mb-48">
+          <p className="font-sans text-[11px] font-bold tracking-[0.4em] text-[#1e3a5f]/40 uppercase">
+            The Concept
+          </p>
+          <h2 className="mt-8 font-[family-name:var(--font-serif)] text-4xl font-light leading-[1.15] text-[#0d1117] sm:text-5xl lg:max-w-4xl lg:text-7xl">
+            A lifestyle ecosystem for <br />
+            <span className="italic">authentic island living</span>
           </h2>
-          <p className="mt-8 text-lg leading-relaxed text-[#0d1117]/70 md:text-xl lg:max-w-2xl">
+          <div className="mt-10 h-12 w-px bg-[#1e3a5f]/10" />
+          <p className="mt-10 max-w-2xl font-sans text-base leading-relaxed text-[#0d1117]/60 md:text-lg">
             {brandVision}
           </p>
         </div>
 
-        {/* Ecosystem Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {divisions.map((division, idx) => (
+        {/* Division 1: Lifestyle Studio (Left Image, Right Text) */}
+        <div className="mb-48 grid gap-16 lg:mb-64 lg:grid-cols-2 lg:items-center lg:gap-24">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#e5e5e5] grayscale-[0.2] transition-all duration-1000 hover:grayscale-0 lg:aspect-[3/4]">
+            <Image
+              src={images["Lifestyle Studio"]}
+              alt="Lifestyle Studio"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+          <div className="max-w-md lg:ml-auto">
+            <span className="font-sans text-[10px] font-bold tracking-[0.3em] text-[#c45c26] uppercase">01 — Studio</span>
+            <h3 className="mt-6 font-[family-name:var(--font-serif)] text-4xl font-light text-[#0d1117] lg:text-5xl">
+              {divisions[0].name}
+            </h3>
+            <p className="mt-8 font-sans text-base leading-relaxed text-[#0d1117]/65">
+              {divisions[0].description}
+            </p>
             <Link
-              key={division.short}
-              href={division.href}
-              className="group relative flex h-[500px] flex-col overflow-hidden rounded-2xl bg-[#0d1117] transition-all duration-700 hover:shadow-2xl hover:shadow-[#1e3a5f]/10 lg:h-[650px]"
+              href={divisions[0].href}
+              className="group mt-10 inline-flex items-center gap-4 text-[11px] font-bold tracking-[0.2em] text-[#0d1117] uppercase transition-colors hover:text-[#c45c26]"
             >
-              {/* Background Image */}
-              <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-110">
-                <Image
-                  src={images[division.name as keyof typeof images]}
-                  alt={division.name}
-                  fill
-                  className="object-cover opacity-80 transition-opacity duration-700 group-hover:opacity-100"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/20 to-transparent transition-opacity duration-700 group-hover:from-[#0d1117]/90" />
-              </div>
+              <span className="border-b border-[#0d1117]/20 pb-1 group-hover:border-[#c45c26]/40">{divisions[0].cta}</span>
+              <svg className="h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
 
-              {/* Content Overlay */}
-              <div className="relative mt-auto p-8 transition-transform duration-500 group-hover:-translate-y-2 lg:p-10">
-                <div className="mb-4 inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-1 backdrop-blur-md">
-                   <span className="text-[10px] font-bold tracking-widest text-white/80 uppercase">0{idx + 1}</span>
-                </div>
-                <h3 className="font-[family-name:var(--font-display)] text-2xl font-semibold leading-tight text-white md:text-3xl">
-                  {division.name}
+        {/* Division 2: Trails Wellassa (Right Image, Left Text) */}
+        <div className="mb-48 grid gap-16 lg:mb-64 lg:grid-cols-2 lg:items-center lg:gap-24">
+          <div className="order-2 lg:order-1">
+             <div className="max-w-md">
+                <span className="font-sans text-[10px] font-bold tracking-[0.3em] text-[#c45c26] uppercase">02 — Journeys</span>
+                <h3 className="mt-6 font-[family-name:var(--font-serif)] text-4xl font-light text-[#0d1117] lg:text-5xl">
+                  {divisions[1].name}
                 </h3>
-                <p className="mt-4 max-w-[280px] text-sm leading-relaxed text-white/70 transition-opacity duration-500 group-hover:text-white/90">
-                  {division.description}
+                <p className="mt-8 font-sans text-base leading-relaxed text-[#0d1117]/65">
+                  {divisions[1].description}
                 </p>
-                
-                <div className="mt-8 flex items-center gap-3 text-white">
-                  <span className="text-xs font-bold tracking-[0.15em] uppercase underline-offset-8 transition-all group-hover:underline">
-                    {division.cta}
-                  </span>
-                  <svg 
-                    className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-2" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                  >
+                <Link
+                  href={divisions[1].href}
+                  className="group mt-10 inline-flex items-center gap-4 text-[11px] font-bold tracking-[0.2em] text-[#0d1117] uppercase transition-colors hover:text-[#c45c26]"
+                >
+                  <span className="border-b border-[#0d1117]/20 pb-1 group-hover:border-[#c45c26]/40">{divisions[1].cta}</span>
+                  <svg className="h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </div>
-              </div>
-              
-              {/* Decorative Glow */}
-              <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#c45c26]/10 blur-[100px] transition-opacity duration-700 group-hover:opacity-100 opacity-0" />
-            </Link>
-          ))}
+                </Link>
+             </div>
+          </div>
+          <div className="order-1 relative aspect-[4/5] overflow-hidden rounded-sm bg-[#e5e5e5] grayscale-[0.2] transition-all duration-1000 hover:grayscale-0 lg:order-2 lg:aspect-[3/4]">
+            <Image
+              src={images["Trails Wellassa Travel Experiences"]}
+              alt="Trails Wellassa"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+
+        {/* Division 3: Promises Moments (Full Width Dark Section) */}
+        <div className="relative -mx-6 overflow-hidden bg-[#0d1117] px-6 py-24 sm:-mx-12 sm:px-12 lg:rounded-sm lg:py-40">
+           <div className="relative z-10 mx-auto max-w-4xl text-center">
+              <span className="font-sans text-[10px] font-bold tracking-[0.4em] text-white/30 uppercase">03 — Moments</span>
+              <h3 className="mt-10 font-[family-name:var(--font-serif)] text-4xl font-light text-white sm:text-5xl lg:text-7xl">
+                Promises Moments <br />
+                <span className="italic text-white/70">Events</span>
+              </h3>
+              <p className="mx-auto mt-12 max-w-xl font-sans text-base leading-relaxed text-white/50 md:text-lg">
+                 {divisions[2].description}
+              </p>
+              <Link
+                  href={divisions[2].href}
+                  className="group mt-12 inline-flex flex-col items-center gap-2"
+                >
+                  <span className="text-[11px] font-bold tracking-[0.3em] text-white uppercase transition-colors group-hover:text-[#c45c26]">{divisions[2].cta}</span>
+                  <div className="h-px w-12 bg-white/20 transition-all group-hover:w-24 group-hover:bg-[#c45c26]/50" />
+              </Link>
+           </div>
+           
+           {/* Subtle Background Image Overlay */}
+           <div className="absolute inset-0 opacity-30 grayscale mix-blend-overlay">
+              <Image
+                src={images["Promises Moments Events"]}
+                alt="Promises Moments"
+                fill
+                className="object-cover"
+                sizes="100vw"
+              />
+           </div>
         </div>
       </div>
     </section>

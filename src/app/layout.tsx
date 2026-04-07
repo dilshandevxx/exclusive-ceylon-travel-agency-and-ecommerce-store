@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { DM_Sans, Syne } from "next/font/google";
+import { DM_Sans, Syne, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const display = Syne({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["600", "700", "800"],
+});
+
+const serif = Cormorant_Garamond({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const sans = DM_Sans({
@@ -28,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} h-full scroll-smooth antialiased`}
+      className={`${display.variable} ${sans.variable} ${serif.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full bg-[#f8f8f8] font-sans text-[#0d1117]">
         {children}

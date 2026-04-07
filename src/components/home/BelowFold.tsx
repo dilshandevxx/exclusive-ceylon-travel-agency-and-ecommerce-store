@@ -73,32 +73,33 @@ export function BelowFold() {
     <div className="bg-[#f8f8f8]">
       <EcosystemSection />
 
-      <div className="mx-auto max-w-[1600px] px-5 pb-16 md:px-10 md:pb-24">
-        <div className="mt-20 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(280px,380px)] lg:gap-14 xl:gap-20">
-          <div className="space-y-14">
-            <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-12">
-              <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold leading-[1.1] tracking-tight text-[#0d1117] sm:text-4xl lg:text-5xl">
-                Rooted in Bibile—
-                <span className="text-[#1e3a5f]">crafted for the island</span>
+      <div className="mx-auto max-w-[1400px] px-6 pb-24 lg:px-12 lg:pb-32">
+        <div className="mt-24 grid gap-20 lg:grid-cols-[1fr_360px] lg:gap-24">
+          <div className="space-y-24">
+            {/* Rooted in Bibile Section */}
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
+              <h2 className="font-[family-name:var(--font-serif)] text-4xl font-light leading-[1.1] tracking-tight text-[#0d1117] sm:text-5xl lg:text-6xl">
+                Rooted in Bibile— <br />
+                <span className="italic text-[#1e3a5f]/80">crafted for the island</span>
               </h2>
-              <div className="space-y-5">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-md shadow-sm">
+              <div className="space-y-8">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-sm grayscale-[0.3] transition-all duration-1000 hover:grayscale-0">
                   <Image
                     src={secondaryImage}
-                    alt="Tropical resort pool overlooking the ocean"
+                    alt="Tropical resort pool"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
                   />
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-[#0d1117]">
+                <div className="max-w-md">
+                  <h3 className="font-[family-name:var(--font-serif)] text-2xl font-light text-[#0d1117]">
                     Our story begins in the village
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#0d1117]/65">
+                  <p className="mt-6 font-sans text-sm leading-relaxed text-[#0d1117]/60">
                     {brandOrigin}
                   </p>
-                  <p className="mt-4 text-sm leading-relaxed text-[#0d1117]/65">
+                  <p className="mt-4 font-sans text-sm leading-relaxed text-[#0d1117]/60">
                     Together, Lifestyle Studio, Trails Wellassa Travel
                     Experiences, and Promises Moments Events form one lifestyle
                     ecosystem—so guests and locals can experience nature,
@@ -106,146 +107,144 @@ export function BelowFold() {
                   </p>
                   <Link
                     href="/about"
-                    className="mt-4 inline-flex text-sm font-semibold text-[#1e3a5f] underline-offset-4 transition hover:underline"
+                    className="group mt-8 inline-flex items-center gap-2 font-sans text-xs font-bold tracking-[0.2em] text-[#1e3a5f] uppercase"
                   >
-                    Read our founder story
+                    <span className="border-b border-[#1e3a5f]/20 pb-1 group-hover:border-[#1e3a5f]">Read our story</span>
                   </Link>
                 </div>
               </div>
             </div>
 
-            <section aria-labelledby="shop-heading">
-              <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            {/* Shop Preview Section */}
+            <section aria-labelledby="shop-heading" className="pt-12">
+              <div className="mb-12 flex flex-col justify-between gap-6 border-b border-[#0d1117]/10 pb-10 sm:flex-row sm:items-end">
                 <div>
-                  <p className="text-[11px] font-semibold tracking-[0.2em] text-[#0d1117]/45 uppercase">
+                  <p className="font-sans text-[10px] font-bold tracking-[0.3em] text-[#0d1117]/40 uppercase">
                     Lifestyle Studio
                   </p>
                   <h2
                     id="shop-heading"
-                    className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-[#0d1117]"
+                    className="mt-4 font-[family-name:var(--font-serif)] text-3xl font-light tracking-tight text-[#0d1117] lg:text-4xl"
                   >
                     Curated travel essentials
                   </h2>
-                  <p className="mt-1 text-sm text-[#0d1117]/60">
-                    Pieces chosen for climate, movement, and everyday elegance on
-                    the road.
-                  </p>
                 </div>
                 <Link
                   href="/shop"
-                  className="inline-flex w-fit items-center justify-center rounded-md border border-[#0d1117] bg-transparent px-5 py-2.5 text-xs font-semibold tracking-[0.12em] text-[#0d1117] uppercase transition hover:bg-[#0d1117] hover:text-white"
+                  className="group flex items-center gap-3 font-sans text-[11px] font-bold tracking-[0.2em] text-[#0d1117] uppercase"
                 >
-                  Shop all
+                  <span className="border-b border-transparent pb-1 group-hover:border-[#0d1117]/30">Shop all collection</span>
+                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
               </div>
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid gap-8 sm:grid-cols-3">
                 {shopItems.map((item) => (
                   <Link
                     key={item.title}
                     href="/shop"
-                    className="group overflow-hidden rounded-md bg-white p-3 shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)]"
+                    className="group flex flex-col"
                   >
-                    <div className="relative aspect-square overflow-hidden rounded bg-[#f0f0f0]">
+                    <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#f0f0f0]">
                       <Image
                         src={item.img}
                         alt={item.title}
                         fill
-                        className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                        sizes="(max-width: 640px) 100vw, 33vw"
+                        className="object-cover transition duration-1000 group-hover:scale-[1.05]"
+                        sizes="(max-width: 640px) 100vw, 25vw"
                       />
                     </div>
-                    <p className="mt-3 text-sm font-semibold text-[#0d1117]">
-                      {item.title}
-                    </p>
-                    <p className="text-sm font-medium text-[#c45c26]">
-                      {item.price}
-                    </p>
+                    <div className="mt-5 space-y-1">
+                       <p className="font-[family-name:var(--font-serif)] text-lg font-light text-[#0d1117]">
+                         {item.title}
+                       </p>
+                       <p className="font-sans text-[11px] font-bold tracking-[0.1em] text-[#c45c26] uppercase">
+                         {item.price}
+                       </p>
+                    </div>
                   </Link>
                 ))}
               </div>
             </section>
           </div>
 
-          <aside className="flex flex-col gap-6">
-            <div className="relative overflow-hidden rounded-md bg-[#0d1117] px-6 py-10 text-white shadow-lg">
+          {/* Sidebar / Aside Section */}
+          <aside className="space-y-16 lg:pt-12">
+            <div className="relative overflow-hidden rounded-sm bg-[#0d1117] p-10 text-white">
               <DotMapBg />
-              <p className="relative text-[11px] font-medium tracking-[0.25em] text-white/55 uppercase">
-                Founded in {founder.origin}
+              <p className="relative font-sans text-[10px] font-bold tracking-[0.3em] text-white/40 uppercase">
+                Established
               </p>
-              <p className="relative mt-4 font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight md:text-6xl">
+              <p className="relative mt-6 font-[family-name:var(--font-serif)] text-7xl font-light leading-none">
                 {founder.foundingYear}
               </p>
-              <p className="relative mt-2 max-w-[260px] text-sm leading-relaxed text-white/75">
+              <p className="relative mt-8 font-sans text-sm leading-relaxed text-white/50">
                 Exclusive Ceylon brings hospitality, lifestyle, and village-born
                 insight into one refined platform.
               </p>
             </div>
 
-            <div>
-              <p className="mb-3 text-[11px] font-semibold tracking-[0.22em] text-[#0d1117]/45 uppercase">
-                Trails Wellassa Travel Experiences
+            <div className="space-y-10">
+              <p className="font-sans text-[10px] font-bold tracking-[0.3em] text-[#0d1117]/40 uppercase">
+                Selected Journeys
               </p>
-              {packages.map((pkg) => (
-                <article
-                  key={pkg.href}
-                  className="mb-4 overflow-hidden rounded-md bg-white shadow-[0_8px_30px_rgb(0,0,0,0.06)] last:mb-0"
-                >
-                  <Link href={pkg.href} className="block">
-                    <div className="relative aspect-[16/10]">
-                      <Image
-                        src={pkg.image}
-                        alt={pkg.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 1024px) 100vw, 380px"
-                      />
-                    </div>
-                    <div className="p-5">
-                      <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[#0d1117]">
-                        {pkg.title}
-                      </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-[#0d1117]/65">
-                        {pkg.desc}
-                      </p>
-                      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-                        <span className="text-sm font-semibold text-[#1e3a5f]">
-                          {pkg.from}
-                        </span>
-                        <span className="rounded-md bg-[#0a0a0a] px-4 py-2 text-[11px] font-semibold tracking-[0.12em] text-white uppercase">
-                          Book
-                        </span>
+              <div className="space-y-12">
+                {packages.map((pkg) => (
+                  <article key={pkg.href} className="group flex flex-col">
+                    <Link href={pkg.href} className="block space-y-6">
+                      <div className="relative aspect-[16/10] overflow-hidden rounded-sm">
+                        <Image
+                          src={pkg.image}
+                          alt={pkg.title}
+                          fill
+                          className="object-cover transition duration-1000 group-hover:scale-[1.05]"
+                          sizes="(max-width: 1024px) 100vw, 360px"
+                        />
                       </div>
-                    </div>
-                  </Link>
-                </article>
-              ))}
+                      <div className="space-y-3">
+                        <h3 className="font-[family-name:var(--font-serif)] text-xl font-light text-[#0d1117]">
+                          {pkg.title}
+                        </h3>
+                        <p className="text-sm leading-relaxed text-[#0d1117]/60">
+                          {pkg.desc}
+                        </p>
+                        <div className="flex items-center gap-4 pt-2">
+                           <span className="font-sans text-[10px] font-bold tracking-[0.2em] text-[#1e3a5f] uppercase">
+                             {pkg.from}
+                           </span>
+                           <div className="h-px flex-1 bg-[#1e3a5f]/10" />
+                        </div>
+                      </div>
+                    </Link>
+                  </article>
+                ))}
+              </div>
             </div>
 
             <Link
               href="/contact"
-              className="group relative flex min-h-[220px] overflow-hidden rounded-md shadow-lg"
+              className="group relative flex aspect-[4/5] overflow-hidden rounded-sm lg:aspect-auto lg:min-h-[400px]"
             >
               <Image
                 src={panelHero}
-                alt="Ocean shoreline at sunset"
+                alt="Ocean shoreline"
                 fill
-                className="object-cover transition duration-700 group-hover:scale-[1.03]"
-                sizes="(max-width: 1024px) 100vw, 380px"
+                className="object-cover transition duration-1000 group-hover:scale-[1.05]"
+                sizes="(max-width: 1024px) 100vw, 360px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117]/85 via-[#0d1117]/35 to-transparent" />
-              <div className="relative z-10 flex h-full flex-col justify-end p-6">
-                <p className="text-[10px] font-semibold tracking-[0.2em] text-white/70 uppercase">
-                  Promises Moments Events
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117]/80 via-[#0d1117]/20 to-transparent" />
+              <div className="relative z-10 flex h-full flex-col justify-end p-10">
+                <p className="font-sans text-[9px] font-bold tracking-[0.3em] text-white/60 uppercase">
+                   Personalized
                 </p>
-                <p className="mt-2 font-[family-name:var(--font-display)] text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl">
-                  Special moments,
-                  <br />
-                  thoughtfully staged
+                <p className="mt-3 font-[family-name:var(--font-serif)] text-3xl font-light leading-[1.2] text-white">
+                  Events thoughtfully <span className="italic">staged</span>
                 </p>
-                <p className="mt-2 text-sm text-white/80">
-                  Personalized celebrations and bespoke gatherings across the
-                  island.
-                </p>
+                <div className="mt-6 flex items-center gap-4 text-white/80">
+                   <span className="text-[10px] font-bold tracking-[0.2em] uppercase transition-colors group-hover:text-white">Plan an event</span>
+                   <div className="h-px w-8 bg-white/30 transition-all group-hover:w-12 group-hover:bg-white" />
+                </div>
               </div>
             </Link>
           </aside>
