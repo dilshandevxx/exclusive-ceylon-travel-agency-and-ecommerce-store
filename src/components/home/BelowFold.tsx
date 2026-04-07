@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -7,6 +9,7 @@ import {
   founder,
 } from "@/lib/brand";
 import { EcosystemSection } from "./EcosystemSection";
+import { openWhatsAppInquiry } from "@/lib/whatsapp";
 
 const secondaryImage =
   "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80";
@@ -141,12 +144,11 @@ export function BelowFold() {
               </div>
               <div className="grid gap-8 sm:grid-cols-3">
                 {shopItems.map((item) => (
-                  <Link
+                  <div
                     key={item.title}
-                    href="/shop"
                     className="group flex flex-col"
                   >
-                    <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#f0f0f0]">
+                    <Link href="/shop" className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#f0f0f0]">
                       <Image
                         src={item.img}
                         alt={item.title}
@@ -154,16 +156,29 @@ export function BelowFold() {
                         className="object-cover transition duration-1000 group-hover:scale-[1.05]"
                         sizes="(max-width: 640px) 100vw, 25vw"
                       />
-                    </div>
+                    </Link>
                     <div className="mt-5 space-y-1">
                        <p className="font-[family-name:var(--font-serif)] text-lg font-light text-[#0d1117]">
                          {item.title}
                        </p>
-                       <p className="font-sans text-[11px] font-bold tracking-[0.1em] text-[#c45c26] uppercase">
-                         {item.price}
-                       </p>
+                       <div className="flex items-center justify-between">
+                         <p className="font-sans text-[11px] font-bold tracking-[0.1em] text-[#c45c26] uppercase">
+                           {item.price}
+                         </p>
+                         <button
+                           onClick={() => 
+                             openWhatsAppInquiry({
+                               productName: item.title,
+                               price: item.price
+                             })
+                           }
+                           className="font-sans text-[10px] font-bold tracking-[0.2em] text-[#1e3a5f] uppercase transition hover:text-[#0d1117]"
+                         >
+                           Buy Now
+                         </button>
+                       </div>
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
             </section>

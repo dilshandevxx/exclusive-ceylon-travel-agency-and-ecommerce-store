@@ -7,6 +7,7 @@ import {
   shopProducts,
   type ShopCategory,
 } from "./shop-data";
+import { openWhatsAppInquiry } from "@/lib/whatsapp";
 
 function formatPrice(n: number) {
   return new Intl.NumberFormat("en-US", {
@@ -121,9 +122,16 @@ export function ShopCatalog() {
                   </span>
                   <button
                     type="button"
+                    title="Buy via WhatsApp"
+                    onClick={() =>
+                      openWhatsAppInquiry({
+                        productName: product.name,
+                        price: formatPrice(product.priceUsd),
+                      })
+                    }
                     className="rounded-md bg-[#0a0a0a] px-4 py-2.5 text-[11px] font-semibold tracking-[0.12em] text-white uppercase transition hover:bg-black"
                   >
-                    Add to cart
+                    Buy now
                   </button>
                 </div>
               </div>
