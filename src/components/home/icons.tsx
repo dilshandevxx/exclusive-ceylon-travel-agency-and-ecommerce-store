@@ -56,28 +56,3 @@ export function IconUser({ className }: { className?: string }) {
   );
 }
 
-export function LogoMark({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width="36"
-      height="36"
-      viewBox="0 0 36 36"
-      fill="none"
-      aria-hidden
-    >
-      <path
-        d="M6 28L18 6l12 22H6z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 22h12"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}

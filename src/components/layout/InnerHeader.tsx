@@ -1,6 +1,7 @@
-import Link from "next/link";
+import { BrandLogo } from "@/components/brand/BrandLogo";
+import { IconBag, IconSearch, IconUser } from "@/components/home/icons";
 import { primaryNav } from "@/lib/site-nav";
-import { IconBag, IconSearch, IconUser, LogoMark } from "@/components/home/icons";
+import Link from "next/link";
 
 type Props = {
   activeHref?: string;
@@ -8,17 +9,9 @@ type Props = {
 
 export function InnerHeader({ activeHref }: Props) {
   return (
-    <header className="border-b border-[#0d1117]/08 bg-[#f8f8f8]/95 backdrop-blur-md">
+    <header className="relative border-b border-[#0d1117]/08 bg-[#f8f8f8]/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-5 py-4 md:gap-6 md:px-10">
-        <Link
-          href="/"
-          className="flex shrink-0 items-center gap-2.5 text-[#0d1117]"
-        >
-          <LogoMark className="h-8 w-8 md:h-9 md:w-9" />
-          <span className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight md:text-xl">
-            Exclusive Ceylon
-          </span>
-        </Link>
+        <BrandLogo variant="header-on-light" />
 
         <nav
           className="absolute left-1/2 hidden -translate-x-1/2 md:block"

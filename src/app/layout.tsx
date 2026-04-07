@@ -15,9 +15,9 @@ const sans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Exclusive Ceylon | Sri Lanka travel & essentials",
+  title: "Exclusive Ceylon | Luxury lifestyle & travel in Sri Lanka",
   description:
-    "Curated Sri Lanka itineraries, custom travel packages, and premium travel gear. Book journeys and shop essentials with Exclusive Ceylon.",
+    "Luxury lifestyle, travel experiences, and special moments in Sri Lanka. Lifestyle Studio, Trails Wellassa Travel Experiences, and Promises Moments Events—founded in Bibile.",
 };
 
 export default function RootLayout({

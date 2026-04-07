@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const heroImage =
   "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=80";
@@ -24,9 +25,9 @@ export function ShopHero() {
         <nav className="text-[11px] font-medium tracking-[0.15em] text-white/55 uppercase">
           <ol className="flex flex-wrap items-center gap-2">
             <li>
-              <a href="/" className="transition hover:text-white">
+              <Link href="/" className="transition hover:text-white">
                 Home
-              </a>
+              </Link>
             </li>
             <li aria-hidden className="text-white/35">
               /

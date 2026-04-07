@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <AnnouncementBar />
       <HeroSection />
-      <MobileNav />
+      <MobileNav variant="hero" />
       <BelowFold />
       <HomeFooter />
     </>

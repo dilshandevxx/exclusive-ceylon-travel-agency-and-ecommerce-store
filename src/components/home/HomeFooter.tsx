@@ -1,3 +1,4 @@
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import Link from "next/link";
 
 const cols = [
@@ -33,12 +34,11 @@ export function HomeFooter() {
       <div className="mx-auto max-w-[1600px] px-5 py-14 md:px-10">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="font-[family-name:var(--font-display)] text-lg font-semibold text-[#0d1117]">
-              Exclusive Ceylon
-            </p>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#0d1117]/60">
-              Premium Sri Lanka travel design, trusted hosts, and essentials for
-              the modern explorer.
+            <BrandLogo variant="footer" />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#0d1117]/60">
+              Luxury lifestyle, authentic village travel, and bespoke events—
+              Lifestyle Studio, Trails Wellassa, and Promises Moments. Founded in
+              Bibile, Sri Lanka.
             </p>
           </div>
           {cols.map((col) => (
@@ -64,7 +64,7 @@ export function HomeFooter() {
         <div className="mt-12 flex flex-col gap-3 border-t border-[#0d1117]/10 pt-8 text-xs text-[#0d1117]/50 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Exclusive Ceylon. All rights reserved.</p>
           <p className="text-[11px] tracking-wide">
-            Colombo · Galle · Kandy · Ella
+            Bibile · Island-wide experiences
           </p>
         </div>
       </div>
