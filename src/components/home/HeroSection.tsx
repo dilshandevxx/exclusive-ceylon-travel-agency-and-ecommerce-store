@@ -1,121 +1,158 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { brandMission, brandTagline, divisions } from "@/lib/brand";
+import { brandTagline, divisions } from "@/lib/brand";
 import { SiteHeader } from "./SiteHeader";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const heroImage =
-  "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=2400&q=80";
-
-const cardImage =
-  "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80";
-
-const taglineParts = brandTagline.split(" | ");
+  "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=2800&q=100";
 
 export function HeroSection() {
+  const { scrollY } = useScroll();
+  
+  // Cinematic Parallax and zoom effects
+  const imageScale = useTransform(scrollY, [0, 1200], [1.05, 1.25]);
+  const imageY = useTransform(scrollY, [0, 1200], [0, 100]);
+  const textOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const textY = useTransform(scrollY, [0, 400], [0, 80]);
+
   return (
-    <section className="relative min-h-[min(92vh,900px)] w-full overflow-hidden">
-      <Image
-        src={heroImage}
-        alt="Sigiriya rock and lush landscape in Sri Lanka"
-        fill
-        priority
-        className="object-cover object-center"
-        sizes="100vw"
-      />
-      <div
-        className="absolute inset-0 bg-gradient-to-r from-[#0d1117]/55 via-[#0d1117]/25 to-transparent"
-        aria-hidden
-      />
-      <div
-        className="absolute inset-0 bg-gradient-to-t from-[#0d1117]/50 via-transparent to-[#0d1117]/20"
-        aria-hidden
-      />
+    <section 
+      className="relative h-screen min-h-[800px] w-full overflow-hidden bg-charcoal"
+    >
+      {/* Cinematic Background with Slow Zoom and Parallax */}
+      <motion.div 
+        style={{ scale: imageScale, y: imageY }}
+        className="absolute inset-0 h-[110%] w-full"
+      >
+        <Image
+          src={heroImage}
+          alt="Sigiriya rock and lush landscape in Sri Lanka"
+          fill
+          priority
+          className="object-cover object-center brightness-[0.7] contrast-[1.15]"
+          sizes="100vw"
+          quality={100}
+        />
+      </motion.div>
+
+      {/* Premium Gradients for Depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-transparent to-charcoal/90" aria-hidden />
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-charcoal/10 to-transparent" aria-hidden />
+      
+      {/* Subtle Vignette */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.4)_100%)]" />
 
       <SiteHeader />
 
-      <div className="relative z-10 mx-auto flex min-h-[min(92vh,900px)] max-w-[1600px] flex-col justify-center px-5 pb-32 pt-28 md:px-10 md:pb-24 md:pt-36">
-        <div className="grid flex-1 items-center gap-10 lg:grid-cols-[minmax(0,340px)_1fr] lg:gap-16">
-          <aside className="order-2 lg:order-1 lg:self-center">
-            <div className="mx-auto w-full max-w-sm rounded-2xl border border-white/25 bg-white/10 p-5 shadow-2xl backdrop-blur-xl md:p-6 lg:max-w-none">
-              <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-xl bg-white/5">
-                <Image
-                  src={cardImage}
-                  alt="Curated lifestyle and travel essentials"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 320px"
-                />
-              </div>
-              <p className="text-[10px] font-bold tracking-[0.25em] text-white/50 uppercase">
-                Lifestyle Studio
-              </p>
-              <p className="mt-1 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-white leading-tight">
-                Curated for slow island living
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-white/70">
-                Lifestyle products and essentials selected for climate, craft, and
-                the rhythm of authentic Sri Lankan living.
-              </p>
-              <Link
-                href="/shop"
-                className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-white px-5 py-3.5 text-xs font-bold tracking-[0.15em] text-[#0d1117] uppercase transition hover:bg-white/90"
-              >
-                Shop Collection
-              </Link>
-            </div>
-          </aside>
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+        <motion.div
+          style={{ opacity: textOpacity, y: textY }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-5xl"
+        >
+          {/* Subtle Tagline */}
+          <motion.p 
+            initial={{ opacity: 0, letterSpacing: "0.1em" }}
+            animate={{ opacity: 0.7, letterSpacing: "0.5em" }}
+            transition={{ delay: 0.8, duration: 1.5 }}
+            className="mb-10 font-sans text-[10px] font-bold text-white uppercase sm:text-xs"
+          >
+            {brandTagline.replace(/ \| /g, " • ")}
+          </motion.p>
 
-          <div className="order-1 flex flex-col justify-center text-center lg:order-2 lg:pr-4 lg:text-right">
-            <p className="mx-auto mb-5 flex max-w-xl flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] font-bold tracking-[0.3em] text-white/60 uppercase sm:text-[11px] lg:ml-auto lg:mr-0 lg:justify-end">
-              {taglineParts.map((part, i) => (
-                <span key={part} className="inline-flex items-center gap-3">
-                  {i > 0 ? (
-                    <span className="hidden h-1 w-1 rounded-full bg-white/30 sm:block" aria-hidden />
-                  ) : null}
-                  {part.trim()}
-                </span>
-              ))}
-            </p>
-            <h1 className="font-[family-name:var(--font-display)] text-white">
-              <span className="block text-4xl font-bold leading-[1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-                Exclusive Ceylon
-              </span>
-              <span className="mt-4 block text-xl font-medium leading-[1.2] tracking-normal text-white/90 sm:text-2xl md:text-3xl lg:text-4xl">
-                A different side of Sri Lanka
-              </span>
-            </h1>
-            <p className="mx-auto mt-8 max-w-md text-base leading-[1.8] text-white/70 sm:text-lg lg:ml-auto lg:mr-0 lg:max-w-lg">
-              {brandMission}
-            </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:justify-end">
-              <Link
-                href="/packages"
-                className="inline-flex w-full items-center justify-center rounded-xl bg-[#c45c26] px-8 py-4 text-[11px] font-bold tracking-[0.15em] text-white uppercase transition hover:bg-[#a64b1d] sm:w-auto"
-              >
-                Trails Wellassa
-              </Link>
-              <Link
-                href="/shop"
-                className="inline-flex w-full items-center justify-center rounded-xl border border-white/30 bg-white/5 px-8 py-4 text-[11px] font-bold tracking-[0.15em] text-white uppercase backdrop-blur-sm transition hover:bg-white/10 sm:w-auto"
-              >
-                Lifestyle Studio
-              </Link>
-            </div>
-          </div>
-        </div>
+          {/* Main Masthead Heading */}
+          <h1 className="text-white text-glow">
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="block font-[family-name:var(--font-serif)] text-6xl font-light leading-[0.9] tracking-[-0.02em] sm:text-8xl md:text-9xl lg:text-[11rem]"
+            >
+              Exclusive
+            </motion.span>
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="block font-[family-name:var(--font-serif)] text-6xl font-light italic leading-[0.9] tracking-tight text-white/90 sm:text-8xl md:text-9xl lg:text-[11rem]"
+            >
+              Ceylon
+            </motion.span>
+            
+            <motion.span 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 1.5 }}
+              className="mt-10 block font-sans text-lg font-light tracking-wide text-white/70 sm:text-xl md:text-2xl"
+            >
+              The <span className="italic text-white">refined</span> side of island living
+            </motion.span>
+          </h1>
 
-        <div className="absolute bottom-0 left-0 right-0 z-10 px-5 pb-8 md:px-10">
-          <div className="mx-auto flex max-w-[1600px] flex-col gap-4 border-t border-white/15 pt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-            {divisions.map((d) => (
-              <div
-                key={d.short}
-                className="flex items-center gap-4 text-left text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase sm:text-[11px]"
-              >
-                <span className="h-px w-8 shrink-0 bg-white/20" />
-                <span>{d.name}</span>
-              </div>
-            ))}
+          {/* Premium Glassmorphic Action Hooks */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4, duration: 1.2 }}
+            className="mt-16 flex flex-col items-center justify-center gap-6 sm:flex-row"
+          >
+            <Link
+              href="/packages"
+              className="glass-panel-dark group flex items-center gap-6 rounded-full px-8 py-4 text-[10px] font-bold tracking-[0.3em] text-white uppercase transition-all duration-500 hover:bg-white/10"
+            >
+              <span>Explore Journeys</span>
+              <div className="h-[1px] w-8 bg-white/40 transition-all duration-500 group-hover:w-12 group-hover:bg-white" />
+            </Link>
+            
+            <Link
+              href="/shop"
+              className="group flex items-center gap-6 rounded-full px-8 py-4 text-[10px] font-bold tracking-[0.3em] text-white uppercase transition-all duration-500 hover:text-white/80"
+            >
+              <span>Lifestyle Studio</span>
+              <div className="h-[1px] w-8 bg-white/40 transition-all duration-500 group-hover:w-12 group-hover:bg-white" />
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Cinematic Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.2, duration: 1 }}
+          className="absolute bottom-12 flex flex-col items-center gap-6"
+        >
+          <span className="font-sans text-[9px] font-bold tracking-[0.4em] text-white/40 uppercase">Discover</span>
+          <div className="relative h-16 w-[1px] overflow-hidden bg-white/10">
+            <motion.div 
+               animate={{ y: ["-100%", "100%"] }}
+               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+               className="h-full w-full bg-white/50"
+            />
           </div>
+        </motion.div>
+      </div>
+
+      {/* Side Content Highlights */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 hidden px-12 pb-12 lg:block">
+        <div className="flex items-center justify-between border-t border-white/10 pt-8">
+          {divisions.map((d, i) => (
+            <motion.div
+              key={d.short}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2 + (i * 0.2), duration: 0.8 }}
+              className="flex items-center gap-6 font-sans text-[10px] font-bold tracking-[0.3em] text-white/30 uppercase"
+            >
+              <span className="h-[1px] w-8 bg-white/20" />
+              <span className="transition-colors hover:text-white/80 cursor-default">{d.name}</span>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
