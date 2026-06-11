@@ -1,32 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f4f2;
-  --foreground: #0a0a0a;
-  --navy: #0d1317;
-  --charcoal: #111111;
+  --background: #f8f8f8;
+  --foreground: #0d1117;
+  --navy: #0d1117;
   --ice: #7eb8da;
-  --accent-gold: #b38b59;
-  --accent-earth: #8c5a35;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-bg-dark: rgba(10, 10, 10, 0.6);
-  --glass-border-dark: rgba(255, 255, 255, 0.08);
+  --accent-orange: #c45c26;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-navy: var(--navy);
-  --color-charcoal: var(--charcoal);
-  --color-gold: var(--accent-gold);
-  --color-earth: var(--accent-earth);
-  --color-glass: var(--glass-bg);
-  --color-glass-border: var(--glass-border);
-  --color-glass-dark: var(--glass-bg-dark);
-  --color-glass-border-dark: var(--glass-border-dark);
   --font-sans: var(--font-sans-body), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-serif), ui-serif, Georgia, serif;
 }
 
 html,
@@ -34,27 +19,4 @@ body {
   background: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Premium utility classes */
-@layer utilities {
-  .glass-panel {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-  }
-  
-  .glass-panel-dark {
-    background: var(--glass-bg-dark);
-    border: 1px solid var(--glass-border-dark);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-
-  .text-glow {
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
-  }
 }
