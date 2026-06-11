@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, Star, Heart, Quote, Search, MapPin, Wallet, Compass } from "lucide-react";
+import { ArrowRight, ArrowLeft, Star, Heart, Quote, Search, MapPin, Wallet, Compass, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -16,8 +16,8 @@ export function BelowFold() {
 
   const steps = [
     { icon: Search, title: "Find your destination", desc: "Embark on a journey to discover your dream destination, where adventure and relaxation await." },
+    { icon: Mail, title: "Contact us", desc: "Reach out to our dedicated travel specialists to customize your perfect itinerary." },
     { icon: MapPin, title: "Book a ticket", desc: "Easily secure your travel arrangements with our seamless booking process." },
-    { icon: Wallet, title: "Make payment", desc: "Complete your transaction securely through our trusted payment gateways." },
     { icon: Compass, title: "Explore destination", desc: "Immerse yourself in the local culture and create unforgettable memories." }
   ];
 

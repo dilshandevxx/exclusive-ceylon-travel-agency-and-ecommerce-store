@@ -36,28 +36,30 @@ export function HeroSection() {
       <div className="w-full">
          <div className="relative h-[85vh] min-h-[700px] w-full rounded-b-[3rem] overflow-hidden bg-black shadow-2xl">
             {/* Crossfading Background Images */}
-            <AnimatePresence mode="popLayout">
+            {bgImages.map((img, idx) => (
               <motion.div
-                key={currentIdx}
+                key={img.id}
                 initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
+                animate={{ 
+                  opacity: currentIdx === idx ? 1 : 0, 
+                  scale: currentIdx === idx ? 1 : 1.05 
+                }}
                 transition={{ duration: 2, ease: "easeInOut" }}
                 className="absolute inset-0 z-0"
               >
                 <Image
-                  src={bgImages[currentIdx].src}
-                  alt={bgImages[currentIdx].alt}
+                  src={img.src}
+                  alt={img.alt}
                   fill
-                  priority
+                  priority={idx === 0}
                   className="object-cover object-center brightness-[0.7]"
                   sizes="100vw"
                 />
               </motion.div>
-            </AnimatePresence>
+            ))}
 
             {/* Dark Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none z-[1]" />
 
             {/* Custom Transparent Header */}
             <header className="absolute inset-x-0 top-0 z-20 pt-8">
