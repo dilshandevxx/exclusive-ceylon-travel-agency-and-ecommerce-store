@@ -1,6 +1,3 @@
-import { BrandLogo } from "@/components/brand/BrandLogo";
-import { IconBag, IconSearch, IconUser } from "@/components/home/icons";
-import { primaryNav } from "@/lib/site-nav";
 import Link from "next/link";
 
 type Props = {
@@ -8,57 +5,52 @@ type Props = {
 };
 
 export function InnerHeader({ activeHref }: Props) {
-  return (
-    <header className="relative border-b border-[#0d1117]/08 bg-[#f8f8f8]/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-5 py-4 md:gap-6 md:px-10">
-        <BrandLogo variant="header-on-light" />
+  const navItems = [
+    { href: "/", label: "Home" },
+    { href: "/packages", label: "Packages" },
+    { href: "/shop", label: "Shop" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+  ];
 
-        <nav
-          className="absolute left-1/2 hidden -translate-x-1/2 md:block"
-          aria-label="Primary"
-        >
-          <ul className="flex items-center gap-8 lg:gap-10">
-            {primaryNav.map((item) => {
-              const active = activeHref === item.href;
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={
-                      active
-                        ? "text-[13px] font-semibold text-[#0d1117]"
-                        : "text-[13px] font-medium tracking-wide text-[#0d1117]/65 transition hover:text-[#0d1117]"
-                    }
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
+  return (
+    <header className="relative w-full bg-[#FAFAFA] pt-8 pb-4 border-b border-gray-100">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 md:px-12">
+        {/* Logo */}
+        <Link href="/" className="font-[family-name:var(--font-sans)] text-2xl font-bold tracking-tight text-black">
+          EXCLUSIVE CEYLON
+        </Link>
+
+        {/* Desktop Nav */}
+        <nav className="hidden lg:block absolute left-1/2 -translate-x-1/2">
+          <ul className="flex items-center gap-10">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`text-sm font-medium transition ${
+                    activeHref === item.href
+                      ? "text-black"
+                      : "text-gray-500 hover:text-black"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
-        <div className="flex shrink-0 items-center gap-1 text-[#0d1117] sm:gap-2">
-          <button
-            type="button"
-            className="rounded-md p-2 transition hover:bg-[#0d1117]/06"
-            aria-label="Search"
-          >
-            <IconSearch />
+        {/* Action Button */}
+        <div className="hidden md:flex items-center gap-6">
+          <button className="text-black text-sm font-bold flex items-center gap-1 hover:text-gray-600 transition">
+             En <span className="text-[10px]">▼</span>
           </button>
-          <Link
-            href="/shop"
-            className="rounded-md p-2 transition hover:bg-[#0d1117]/06"
-            aria-label="Shopping bag"
+          <Link 
+            href="/contact" 
+            className="flex items-center justify-center bg-black text-white px-8 py-3 rounded-full text-xs font-bold hover:bg-gray-800 transition shadow-sm"
           >
-            <IconBag />
-          </Link>
-          <Link
-            href="/account"
-            className="rounded-md p-2 transition hover:bg-[#0d1117]/06"
-            aria-label="Account"
-          >
-            <IconUser />
+            Login
           </Link>
         </div>
       </div>
